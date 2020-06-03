@@ -97,5 +97,6 @@ void loop()
   WiFi.disconnect();
   while(WiFi.status() == WL_CONNECTED);
 
-  ESP.deepSleep(0);
+  digitalWrite(MOSFET_PIN, HIGH);   // GPIO state is undefined in deep sleep with a low drive. This ensures that the MOSFET is switched OFF. 
+  ESP.deepSleep(0);                 // the board should already be powered OFF due to the line above, so we will most likley not execute this statement
 }
